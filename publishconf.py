@@ -15,7 +15,7 @@ SITEURL = 'https://jdotjdot.github.io'
 RELATIVE_URLS = False
 
 if os.getenv('HEROKU') == 'True':
-    PATH = 'content' #'/app/content'
+    PATH = '../content' #'/app/content'
     PLUGIN_PATH = '../pelican-plugins'
 
 
