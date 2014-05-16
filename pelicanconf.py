@@ -60,7 +60,7 @@ CATEGORY_SAVE_AS = "category/{slug}/index.html"
 TAG_CLOUD_STEPS = 6
 # TAG_CLOUD_MAX_ITEMS = 25
 
-THEME = '../gum-jj'
+THEME = '../Gum-JJ'
 # Themes I like:
 # BT3-Flat
 # Just-Read's archive feature
