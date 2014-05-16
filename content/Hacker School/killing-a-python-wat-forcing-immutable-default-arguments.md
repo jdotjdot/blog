@@ -60,12 +60,13 @@ First, let's get our basic decorator structure out:
         
 ###Getting our default arguments
         
-Next, we'd like to grab the default arguments and variable names from our to-be-decorated function.  We know already we can get the defaults from `function.func_defaults`, and we can grab the variable names from `funcion.func_code.co_varnames`.
+Next, we'd like to grab the default arguments and variable names from our to-be-decorated function.  We know already we can get the defaults from `function.func_defaults`, and we can grab the variable names from `function.func_code.co_varnames`.  We also will grab the number of arguments for the function from `function.func_code.co_argcount`.
 
     :::python
     def enforce_defaults(function):
     	varnames = function.func_code.co_varnames
     	defaults = function.func_defaults
+        argcount = function.func_code.co_argcount
     
         def wrapper(*args, **kwargs):
         	return function(*args, **kwargs)
@@ -109,7 +110,8 @@ So there we have our initial args dictionary with our default arguments:
     def enforce_defaults(function):
     	varnames = function.func_code.co_varnames
     	defaults = function.func_defaults
-    
+        argcount = function.func_code.co_argcount
+
         def wrapper(*args, **kwargs):
         	# "holder" is where we're storing our args
         	holder = dict(zip(varnames[-len(defaults):], defaults))
@@ -120,6 +122,23 @@ So there we have our initial args dictionary with our default arguments:
         
         return wrapper
 
+###Other variables in the function?
+Unfortunately, Python functions are going to store **all** of the function variables in `func_code.co_varnames`, including ones declared in-function.  For example:
+
+    :::python
+    def test(a, b=3):
+        c = 4
+
+    >>> test.func_code.co_varnames
+    ('a', 'b', 'c')
+    >>> test.func_defaults
+    (3,)
+    >>> test.func_code.co_argcount
+    2
+
+To deal with that scenario, because the internally declared variables are stuck on at the end, we'll have to make a slight modification to our `holder` variable.  Since we know from `argcount` how many arguments they are, we can go back to `varnames` and simply just chop off any extra appended variables before doing our trick with `[-len(defaults):]`.
+
+    holder = dict(zip(varnames[:argcount][-len(defaults):], defaults))
 
 ###Oh no!
 Looks like what we've done isn't helping at all!  If we stick a print statement in there to debug, you can see what's happening:
@@ -128,10 +147,11 @@ Looks like what we've done isn't helping at all!  If we stick a print statement 
     def enforce_defaults(function):
     	varnames = function.func_code.co_varnames
     	defaults = function.func_defaults
+        argcount = function.func_code.co_argcount
     
         def wrapper(*args, **kwargs):
         	# "holder" is where we're storing our args
-        	holder = dict(zip(varnames[-len(defaults):], defaults))
+        	holder = dict(zip(varnames[:argcount][-len(defaults):], defaults))
         	
         	print holder
         	
@@ -164,10 +184,11 @@ We can make sure we're always getting **new** args rather than our old mutating 
 	  import copy
 	  varnames = function.func_code.co_varnames
 	  defaults = function.func_defaults
+      argcount = function.func_code.co_argcount
 	  
 	  def wrapper(*args, **kwargs):
 	    inner_defaults = copy.deepcopy(defaults)
-	    holder = dict(zip(varnames[-len(inner_defaults):], inner_defaults))
+	    holder = dict(zip(varnames[:argcount][-len(inner_defaults):], inner_defaults))
 	    
 	    print holder # for debugging
 	
@@ -233,10 +254,11 @@ As final proof:
 	  import copy
 	  varnames = function.func_code.co_varnames
 	  defaults = function.func_defaults
+      argcount = function.func_code.co_argcount
 	  
 	  def wrapper(*args, **kwargs):
 	    inner_defaults = copy.deepcopy(defaults)
-	    holder = dict(zip(varnames[-len(inner_defaults):], inner_defaults))
+	    holder = dict(zip(varnames[:argcount][-len(inner_defaults):], inner_defaults))
 	    holder.update(dict(zip(varnames, args)))
 	    holder.update(kwargs)
 	

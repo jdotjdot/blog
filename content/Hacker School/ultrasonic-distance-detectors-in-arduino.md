@@ -1,6 +1,6 @@
-Title: Ultrasonic distance detectors in Arudino
+Title: Ultrasonic distance detectors in Arduino
 Date: 2014-03-27
-Slug: ultrasonic-distance-detectors-in-arudino
+Slug: ultrasonic-distance-detectors-in-arduino
 Category: Programming
 Tags: hackerschool, arduino, ultrasonic, distance
 Status: published
@@ -12,7 +12,7 @@ Matt at Hacker School has plans to go back home and hook up a Raspberry Pi or an
 
 Since I've worked quite a bit with Arduino at this point, between the [wireless remote control car project](https://github.com/jdotjdot/B_FURIOUS) and the [internet-enabled door opener](https://github.com/jdotjdot/doorduino), Matt asked me to walk him through what the code would look like in C.  Up until now, he's been working with Arduinos using a Ruby library (I think [this one](http://ruby-serialport.rubyforge.org/)), but it's fairly limited, and I also would imagine that being another step away from the C would make it harder to program the micro controller.  So we went over what the C code would look like for a very simple use case.
 
-We set up an arduino to detect the closest item (linearly) using the ultrasonic distance detector, and then to dim a light depending on how far the item was.
+We set up an Arduino to detect the closest item (linearly) using the ultrasonic distance detector, and then to dim a light depending on how far the item was.
 
 Here it is in action:
 

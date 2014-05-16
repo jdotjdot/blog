@@ -54,9 +54,22 @@ def cf_upload():
 
 def lpublish():
     local('pelican -s publishconf.py -o /Users/JJ/Coding/jdotjdot.github.io')
-    local('cd ~/Coding/jdotjdot.github.io')
-    local('git add . && git commit -m "Published on {} by Fabric"'.format(datetime.datetime.now().isoformat()))
-    local('git push origin master')
+    # have to do some of this b/c pelican -o kills the .git directory
+    # local('cd ~/Coding/jdotjdot.github.io && '
+    #        # 'git init && git remote add origin https://github.com/jdotjdot/jdotjdot.github.io.git '
+    #        'git clean -f && '
+    #        'git add . && '
+    #        'git commit -m "Published on {} by Fabric" && '
+    #        'git pull origin master && '
+    #        'git push origin master'.format(datetime.datetime.now().isoformat())
+    # )
+
+    with lcd('~/Coding/jdotjdot.github.io'):
+      local('git clean -f')
+      local('git add .')
+      local('git commit -m "Published on {} by Fabric"'.format(datetime.datetime.now().isoformat()))
+      local('git pull origin master')
+      local('git push origin master')
 
 @hosts(production)
 def publish():
