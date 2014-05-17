@@ -19,7 +19,7 @@ if os.getenv('HEROKU') == 'True':
     PATH = '/app/content' #'/app/content'
     PLUGIN_PATH = '../pelican-plugins'
     THEME = '../Gum-JJ'
-    ASSETS_CONFIG = (('directory', '/app/{}/theme'.format(OUTPUTDIR)),)
+    ASSET_CONFIG = (('directory', '/app/{}/theme'.format(OUTPUTDIR)),)
 
 
 FEED_ALL_ATOM = 'feeds/all.atom.xml'
