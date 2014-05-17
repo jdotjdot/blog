@@ -17,7 +17,7 @@ RELATIVE_URLS = False
 if os.getenv('HEROKU') == 'True':
     PATH = '../content' #'/app/content'
     PLUGIN_PATH = '../pelican-plugins'
-    THEME = 'Gum-JJ'
+    THEME = '../Gum-JJ'
 
 
 FEED_ALL_ATOM = 'feeds/all.atom.xml'
