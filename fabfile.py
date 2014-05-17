@@ -53,6 +53,8 @@ def cf_upload():
           'upload -c {cloudfiles_container} .'.format(**env))
 
 def lpublish():
+    with lcd('~/Coding/jdotjdot.github.io'):
+      local('git pull origin master')
     local('pelican -s publishconf.py -o /Users/JJ/Coding/jdotjdot.github.io')
     # have to do some of this b/c pelican -o kills the .git directory
     # local('cd ~/Coding/jdotjdot.github.io && '
@@ -68,7 +70,6 @@ def lpublish():
       local('git clean -f')
       local('git add .')
       local('git commit -m "Published on {} by Fabric"'.format(datetime.datetime.now().isoformat()))
-      local('git pull origin master')
       local('git push origin master')
 
 @hosts(production)

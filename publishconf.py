@@ -19,7 +19,9 @@ if os.getenv('HEROKU') == 'True':
     PATH = '/app/content' #'/app/content'
     PLUGIN_PATH = '../pelican-plugins'
     THEME = '../Gum-JJ'
-    ASSET_CONFIG = (('directory', '/app/{}/theme'.format(OUTPUTDIR)),)
+    ASSET_CONFIG = (('directory', '/app/{}/theme'.format(OUTPUTDIR)),
+                    #('SASS_BIN', '/app/.heroku/python/lib/python2.7/site-packages/sass.so')
+                    )
 
 
 FEED_ALL_ATOM = 'feeds/all.atom.xml'
