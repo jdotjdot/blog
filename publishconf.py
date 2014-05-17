@@ -13,7 +13,7 @@ from pelicanconf import *
 # SITEURL = 'http://blog.jdotjdot.com'
 SITEURL = 'https://jdotjdot.github.io'
 RELATIVE_URLS = False
-OUTPUTDIR = SITEURL
+OUTPUTDIR = 'jdotjdot.github.io'
 
 if os.getenv('HEROKU') == 'True':
     PATH = '/app/content' #'/app/content'
