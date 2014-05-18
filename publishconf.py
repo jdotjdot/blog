@@ -22,13 +22,14 @@ if os.getenv('HEROKU') == 'True':
     ASSET_CONFIG = (('directory', '/app/{}/theme'.format(OUTPUTDIR)),
                     #('SASS_BIN', '/app/.heroku/python/lib/python2.7/site-packages/sass.so')
                     )
+    DELETE_OUTPUT_DIRECTORY = True
 
 
 FEED_ALL_ATOM = 'feeds/all.atom.xml'
-CATEGORY_FEED_ATOM = 'feeds/%s.atom.xml'
-TAG_FEED_ATOM = 'feeds/%s.atom.xml'
+CATEGORY_FEED_ATOM = 'feeds/category/%s.atom.xml'
+TAG_FEED_ATOM = 'feeds/tag/%s.atom.xml'
 
-# DELETE_OUTPUT_DIRECTORY = True
+
 
 # Following items are often useful when publishing
 
