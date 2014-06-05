@@ -86,6 +86,8 @@ PLUGINS = ['assets', 'sitemap', 'gravatar',
 TYPOGRIFY = True
 WITH_FUTURE_DATES = False
 
+STATIC_PATHS = ['images', ]
+
 # things required for deploy:
 # gum-jj repo
 # pelican-plugins repo
