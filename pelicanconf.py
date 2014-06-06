@@ -82,7 +82,7 @@ PLUGINS = ['assets', 'sitemap', 'gravatar',
             'share_post', #https://github.com/getpelican/pelican-plugins/tree/master/share_post
             'simple_footnotes', #https://github.com/getpelican/pelican-plugins/tree/master/simple_footnotes
            'optimize_images',
-	   'liquid_tags.img', 'liquid_tags.youtube', 'liquid_tags.notebook',
+	   'liquid_tags.img', 'liquid_tags.youtube', 'liquid_tags.notebook', 'liquid_tags.literal',
 	    ]
 
 TYPOGRIFY = True
