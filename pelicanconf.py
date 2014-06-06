@@ -81,7 +81,9 @@ PLUGINS = ['assets', 'sitemap', 'gravatar',
             'multi_part', # allows for multipart posts
             'share_post', #https://github.com/getpelican/pelican-plugins/tree/master/share_post
             'simple_footnotes', #https://github.com/getpelican/pelican-plugins/tree/master/simple_footnotes
-            ]
+           'optimize_images',
+	   'liquid_tags.img', 'liquid_tags.youtube', 'liquid_tags.notebook',
+	    ]
 
 TYPOGRIFY = True
 WITH_FUTURE_DATES = False
